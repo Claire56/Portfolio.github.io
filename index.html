@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Claire Kim — AI/ML Engineering Leader</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:       #2563EB;
+      --blue-light: #EFF6FF;
+      --blue-mid:   #BFDBFE;
+      --navy:       #0F172A;
+      --slate:      #1E293B;
+      --muted:      #64748B;
+      --border:     #E2E8F0;
+      --bg:         #F8FAFC;
+      --white:      #FFFFFF;
+      --radius:     12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--slate);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      font-weight: 700; font-size: 1.1rem; color: var(--navy);
+      text-decoration: none; letter-spacing: -0.3px;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--muted); font-size: 0.9rem;
+      font-weight: 500; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--blue); }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 1200px; margin: 0 auto;
+      padding: 80px 40px 60px;
+      display: grid; grid-template-columns: 1fr 420px; gap: 60px;
+      align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--blue-light); color: var(--blue);
+      font-size: 0.8rem; font-weight: 600;
+      padding: 6px 14px; border-radius: 100px;
+      margin-bottom: 20px;
+      border: 1px solid var(--blue-mid);
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--blue); display: block;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800; color: var(--navy);
+      line-height: 1.15; letter-spacing: -1px;
+      margin-bottom: 20px;
+    }
+    .hero h1 span { color: var(--blue); }
+    .hero p {
+      color: var(--muted); font-size: 1.05rem;
+      max-width: 520px; margin-bottom: 32px; line-height: 1.7;
+    }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--blue); color: #fff;
+      padding: 12px 24px; border-radius: 8px;
+      font-weight: 600; font-size: 0.9rem;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+      transition: background .2s, transform .15s;
+    }
+    .btn-primary:hover { background: #1D4ED8; transform: translateY(-1px); }
+    .btn-secondary {
+      background: var(--white); color: var(--navy);
+      padding: 12px 24px; border-radius: 8px;
+      font-weight: 600; font-size: 0.9rem;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+      border: 1.5px solid var(--border);
+      transition: border-color .2s, transform .15s;
+    }
+    .btn-secondary:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-1px); }
+
+    /* Hero photo */
+    .hero-photo-wrap {
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-dots {
+      position: absolute; inset: -20px;
+      background-image: radial-gradient(circle, #BFDBFE 1.5px, transparent 1.5px);
+      background-size: 28px 28px;
+      border-radius: 20px;
+      z-index: 0;
+    }
+    .hero-photo {
+      position: relative; z-index: 1;
+      width: 340px; height: 340px;
+      object-fit: cover; object-position: center top;
+      border-radius: 16px;
+      border: 4px solid var(--white);
+      box-shadow: 0 20px 60px rgba(37,99,235,0.15);
+    }
+    .hero-tag {
+      position: absolute; z-index: 2;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 0.78rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      display: flex; align-items: center; gap: 8px;
+      font-weight: 600;
+    }
+    .hero-tag.tag-left { bottom: 30px; left: -20px; color: var(--navy); }
+    .hero-tag.tag-right { top: 30px; right: -20px; color: var(--navy); }
+    .tag-icon { font-size: 1.1rem; }
+
+    /* ── STATS ── */
+    .stats-bar {
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .stats-inner {
+      max-width: 1200px; margin: 0 auto;
+      padding: 28px 40px;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .stat-item {
+      display: flex; align-items: center; gap: 14px;
+      padding: 0 20px;
+      border-right: 1px solid var(--border);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--blue-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; flex-shrink: 0;
+    }
+    .stat-num { font-size: 1.5rem; font-weight: 800; color: var(--navy); }
+    .stat-label { font-size: 0.78rem; color: var(--muted); font-weight: 500; }
+
+    /* ── SECTIONS ── */
+    section { padding: 80px 40px; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--blue);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800; color: var(--navy);
+      letter-spacing: -0.5px; margin-bottom: 12px;
+    }
+    .section-subtitle {
+      color: var(--muted); font-size: 1rem;
+      max-width: 560px; margin-bottom: 48px;
+    }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--white); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 24px;
+    }
+    .project-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: box-shadow .2s, transform .2s;
+      display: flex; flex-direction: column;
+    }
+    .project-card:hover {
+      box-shadow: 0 8px 32px rgba(37,99,235,0.10);
+      transform: translateY(-3px);
+    }
+    .project-icon {
+      width: 48px; height: 48px; border-radius: 10px;
+      background: var(--blue-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 16px;
+    }
+    .project-card h3 {
+      font-size: 1rem; font-weight: 700; color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .project-card p {
+      font-size: 0.875rem; color: var(--muted);
+      line-height: 1.6; margin-bottom: 16px; flex: 1;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .tag {
+      background: var(--blue-light); color: var(--blue);
+      font-size: 0.72rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 100px;
+    }
+    .tag-gray {
+      background: #F1F5F9; color: var(--muted);
+    }
+    .project-link {
+      font-size: 0.82rem; font-weight: 600; color: var(--blue);
+      text-decoration: none; display: inline-flex; align-items: center; gap: 4px;
+    }
+    .project-link:hover { text-decoration: underline; }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--bg); }
+    .exp-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+    }
+    .exp-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: box-shadow .2s;
+    }
+    .exp-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+    .exp-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 4px; flex-wrap: wrap; gap: 8px;
+    }
+    .exp-company {
+      font-weight: 800; font-size: 1rem; color: var(--navy);
+    }
+    .exp-date {
+      font-size: 0.78rem; color: var(--muted); font-weight: 500;
+      background: var(--bg); padding: 3px 10px; border-radius: 100px;
+      border: 1px solid var(--border); white-space: nowrap;
+    }
+    .exp-role {
+      font-size: 0.85rem; color: var(--blue); font-weight: 600;
+      margin-bottom: 14px;
+    }
+    .exp-bullets {
+      list-style: none; display: flex; flex-direction: column; gap: 8px;
+    }
+    .exp-bullets li {
+      font-size: 0.83rem; color: var(--muted); line-height: 1.55;
+      padding-left: 16px; position: relative;
+    }
+    .exp-bullets li::before {
+      content: '▸'; position: absolute; left: 0;
+      color: var(--blue); font-size: 0.75rem; top: 2px;
+    }
+    .exp-projects {
+      display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px;
+    }
+    .exp-proj-tag {
+      font-size: 0.72rem; font-weight: 600;
+      background: var(--blue-light); color: var(--blue);
+      padding: 3px 10px; border-radius: 100px;
+    }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--white); }
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .skill-group {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 20px;
+    }
+    .skill-group-title {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--blue);
+      margin-bottom: 12px;
+    }
+    .skill-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+    .skill-pill {
+      background: var(--white); border: 1px solid var(--border);
+      color: var(--slate); font-size: 0.75rem; font-weight: 500;
+      padding: 4px 10px; border-radius: 6px;
+    }
+
+    /* ── EDUCATION ── */
+    #education { background: var(--bg); }
+    .edu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+    .edu-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px;
+    }
+    .edu-icon {
+      width: 40px; height: 40px; border-radius: 8px;
+      background: var(--blue-light); display: flex; align-items: center;
+      justify-content: center; font-size: 1.1rem; margin-bottom: 14px;
+    }
+    .edu-degree { font-weight: 700; color: var(--navy); font-size: 0.95rem; margin-bottom: 4px; }
+    .edu-school { font-size: 0.85rem; color: var(--muted); margin-bottom: 8px; }
+    .edu-date { font-size: 0.78rem; color: var(--blue); font-weight: 600; }
+
+    /* ── WRITING ── */
+    #writing { background: var(--white); }
+    .writing-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .writing-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .writing-card:hover {
+      box-shadow: 0 6px 24px rgba(37,99,235,0.09);
+      transform: translateY(-2px);
+    }
+    .writing-meta {
+      font-size: 0.75rem; color: var(--muted); font-weight: 500;
+      margin-bottom: 10px;
+    }
+    .writing-card h3 {
+      font-size: 0.95rem; font-weight: 700; color: var(--navy);
+      margin-bottom: 8px; line-height: 1.4;
+    }
+    .writing-card p { font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--navy);
+      padding: 80px 40px;
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 800; color: var(--white);
+      letter-spacing: -0.5px; margin-bottom: 16px;
+    }
+    .cta-section p { color: #94A3B8; font-size: 1rem; margin-bottom: 32px; }
+    .cta-section .btn-primary {
+      font-size: 1rem; padding: 14px 32px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 28px 40px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+    }
+    footer p { color: #64748B; font-size: 0.82rem; }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a {
+      color: #64748B; font-size: 0.82rem; text-decoration: none;
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--blue); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; gap: 40px; }
+      .hero-photo-wrap { justify-content: center; }
+      .hero-photo { width: 280px; height: 280px; }
+      .exp-grid { grid-template-columns: 1fr; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+      nav { padding: 0 20px; }
+      section { padding: 60px 20px; }
+      .hero { padding: 60px 20px 40px; }
+    }
+    @media (max-width: 600px) {
+      .stats-inner { grid-template-columns: 1fr; }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 16px; }
+      .stat-item:last-child { border-bottom: none; }
+      .nav-links { gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a class="nav-logo" href="#">Claire Kim</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#writing">Writing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">AI/ML Engineering Leader</div>
+    <h1>Building production<br><span>AI systems</span><br>that scale</h1>
+    <p>
+      Lead AI Engineer focused on building secure, reliable, and cost-efficient
+      GenAI platforms and agentic systems. I design and ship enterprise AI
+      infrastructure including LLMs, RAG, AI gateways, and multi-agent
+      architectures with measurable impact.
+    </p>
+    <div class="hero-btns">
+      <a class="btn-primary" href="#projects">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        View Projects
+      </a>
+      <a class="btn-secondary" href="Claire_Resume_1k.docx.pdf" download>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Resume
+      </a>
+    </div>
+  </div>
+  <div class="hero-photo-wrap">
+    <div class="hero-dots"></div>
+    <img class="hero-photo" src="profile.jpg" alt="Claire Kim" />
+    <div class="hero-tag tag-left">
+      <span class="tag-icon">🏆</span>
+      <span>100% Tool Precision<br><span style="color:var(--muted);font-weight:400">SLM Fine-Tuning</span></span>
+    </div>
+    <div class="hero-tag tag-right">
+      <span class="tag-icon">⚡</span>
+      <span>Sub-200ms APIs<br><span style="color:var(--muted);font-weight:400">Enterprise Scale</span></span>
+    </div>
+  </div>
+</div>
+
+<!-- ── STATS ── -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-icon">🚀</div>
+      <div>
+        <div class="stat-num">40+</div>
+        <div class="stat-label">Projects shipped</div>
+      </div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon">💰</div>
+      <div>
+        <div class="stat-num">70%</div>
+        <div class="stat-label">Inference cost reduction</div>
+      </div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon">🏢</div>
+      <div>
+        <div class="stat-num">Enterprise</div>
+        <div class="stat-label">scale deployment</div>
+      </div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon">🤖</div>
+      <div>
+        <div class="stat-num">LLM + RAG</div>
+        <div class="stat-label">+ Agents expertise</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FEATURED PROJECTS ── -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label">Featured Work</div>
+    <div class="section-title">Projects that ship to production</div>
+    <p class="section-subtitle">Real-world AI systems built for enterprise scale, cost efficiency, and reliability.</p>
+
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-icon">🔀</div>
+        <h3>Enterprise AI Gateway</h3>
+        <p>Proxy-first AI gateway layer enabling seamless routing across OpenAI, Azure, and open-source providers with cost analysis, guardrails, and real-time security. Deployed on AKS with APISIX.</p>
+        <div class="tags">
+          <span class="tag">FastAPI</span>
+          <span class="tag">AKS</span>
+          <span class="tag">APISIX</span>
+          <span class="tag">Azure OpenAI</span>
+          <span class="tag tag-gray">GEICO Tech</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">💬</div>
+        <h3>SLM Fine-Tuning Pipeline</h3>
+        <p>Enterprise fine-tuning pipeline using QLoRA + Llama 3.2 for customer assistant tool-calling. Achieved 100% tool precision and identical F1 to GPT-4.1 on 286 held-out examples in just 13.5 min on A100.</p>
+        <div class="tags">
+          <span class="tag">QLoRA</span>
+          <span class="tag">Llama 3.2</span>
+          <span class="tag">Azure AML</span>
+          <span class="tag">vLLM</span>
+          <span class="tag tag-gray">GEICO Tech</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">🧠</div>
+        <h3>PTU Capacity Intelligence API</h3>
+        <p>Real-time Azure OpenAI capacity intelligence layer exposing PTU headroom across 19 enterprise instances. Sub-200ms responses enable dynamic load routing, turning opaque PTU spend into programmatic decisions.</p>
+        <div class="tags">
+          <span class="tag">Azure Monitor</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">Prometheus</span>
+          <span class="tag tag-gray">GEICO Tech</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">📦</div>
+        <h3>Context Fabric — Open Source RAG Store</h3>
+        <p>Open-source context store for an AI Agent Harness using pgvector with HNSW indexing for sub-150ms ANN search across 768-dim vectors. Includes CI/CD embed pipeline and LLM Wiki prompts-as-code pattern.</p>
+        <div class="tags">
+          <span class="tag">pgvector</span>
+          <span class="tag">HNSW</span>
+          <span class="tag">Python</span>
+          <span class="tag">CI/CD</span>
+          <span class="tag tag-gray">GEICO Tech</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">🏥</div>
+        <h3>Healthcare Agentic RAG API</h3>
+        <p>Production-ready FastAPI app for clinical decision support using agentic RAG with LangGraph, Pinecone, and Reflection. Enables complex multi-step reasoning over clinical knowledge bases.</p>
+        <div class="tags">
+          <span class="tag">LangGraph</span>
+          <span class="tag">Pinecone</span>
+          <span class="tag">LangSmith</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag tag-gray">Personal</span>
+        </div>
+        <a class="project-link" href="#" target="_blank">View on GitHub →</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">🏠</div>
+        <h3>Zyzy House Value Estimator</h3>
+        <p>ML web app that estimates home values in any location using Gradient Boosting and Grid Search CV. Built with Flask, Python, Pandas, NumPy, and Chart.js for interactive visualizations.</p>
+        <div class="tags">
+          <span class="tag">Gradient Boosting</span>
+          <span class="tag">Flask</span>
+          <span class="tag">Sklearn</span>
+          <span class="tag">Chart.js</span>
+          <span class="tag tag-gray">Personal</span>
+        </div>
+        <a class="project-link" href="#" target="_blank">View on GitHub →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPERIENCE ── -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label">Career</div>
+    <div class="section-title">Professional Experience</div>
+    <p class="section-subtitle">10+ years building data systems, ML infrastructure, and enterprise AI platforms.</p>
+
+    <div class="exp-grid">
+
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-company">GEICO Tech</div>
+          <div class="exp-date">Oct 2022 – Present</div>
+        </div>
+        <div class="exp-role">Sr. Engineer, AI Solutions · Remote</div>
+        <div class="exp-projects">
+          <span class="exp-proj-tag">SLM Fine-Tuning</span>
+          <span class="exp-proj-tag">PTU Capacity API</span>
+          <span class="exp-proj-tag">Context Fabric</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>Architected enterprise SLM fine-tuning pipeline (QLoRA, Llama 3.2) achieving 100% tool precision vs. GPT-4.1 on held-out benchmarks</li>
+          <li>Delivered PTU Capacity API exposing real-time utilization across 19 Azure OpenAI instances, enabling dynamic load routing</li>
+          <li>Designed proxy-first AI gateway with cost analysis, guardrails, and multi-provider routing on AKS + APISIX</li>
+          <li>Built open-source context store using pgvector HNSW indexing for sub-150ms RAG retrieval at enterprise scale</li>
+          <li>Established prompts-as-code "LLM Wiki" monorepo with Git-native versioning across dev/staging/prod</li>
+        </ul>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-company">Zimba</div>
+          <div class="exp-date">Nov 2021 – Oct 2022</div>
+        </div>
+        <div class="exp-role">Sr. Software Engineer, ML · AI/ML Platform · Remote</div>
+        <div class="exp-projects">
+          <span class="exp-proj-tag">MDC Project</span>
+          <span class="exp-proj-tag">Project Wintermute</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>Automated LLM accuracy/latency/cost evaluation using Harness/deepeval, cutting manual review time by 70% across 50+ prompts</li>
+          <li>Integrated Qdrant/FAISS vector search with domain-specific embeddings for low-latency RAG pipelines</li>
+          <li>Reduced cold-start latency from 2s to 200ms using model caching and K8s ConfigMap pre-warming strategies</li>
+          <li>Led ML security anomaly detection (Project Wintermute) using gradient boosting across enterprise log, network, and application telemetry</li>
+          <li>Implemented queue-based async processing, reducing peak load latency 70% while maintaining throughput</li>
+        </ul>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-company">EMD Electronics</div>
+          <div class="exp-date">Aug 2019 – Nov 2021</div>
+        </div>
+        <div class="exp-role">Software Engineer · San Jose, CA</div>
+        <ul class="exp-bullets">
+          <li>Productionalized ML models with automated CI/CD pipelines, reducing time-to-production by 65%</li>
+          <li>Built FastAPI RESTful APIs for chip fab model serving, handling 1M+ daily requests with &lt;100ms response times</li>
+          <li>Automated AWS infrastructure with Terraform, reducing provisioning time by 80%</li>
+          <li>Architected Airflow data pipelines processing 500+ GB daily with 99.9% reliability</li>
+          <li>Implemented Grafana monitoring, reducing model drift detection time from days to minutes</li>
+        </ul>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-header">
+          <div class="exp-company">Alexxa</div>
+          <div class="exp-date">June 2013 – Oct 2017</div>
+        </div>
+        <div class="exp-role">Software Engineer – Data · Sacramento, CA</div>
+        <ul class="exp-bullets">
+          <li>Partnered with data scientists to deploy predictive models (customer retention, user behavior) increasing upsell opportunities</li>
+          <li>Built data visualization tools (Tableau, Python) translating technical insights into business strategies for leadership</li>
+          <li>Designed scalable ETL pipelines improving data availability for ML models across disparate sources</li>
+          <li>Optimized AWS Redshift/RDS query performance, reducing dashboard load times by 50%</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Google inline -->
+    <div style="margin-top: 24px;">
+      <div class="exp-card" style="display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 200px;">
+          <div class="exp-header">
+            <div class="exp-company">Google</div>
+            <div class="exp-date">Oct 2017 – Jan 2018</div>
+          </div>
+          <div class="exp-role">Research Assistant · Palo Alto, CA · Contact Design Project</div>
+        </div>
+        <ul class="exp-bullets" style="flex: 2; min-width: 280px;">
+          <li>Developed IoT sensor placement optimization tools, improving collection efficiency by 19%</li>
+          <li>Created interactive dashboards (Tableau, JavaScript) tracking video quality KPIs, reducing analysis time by 30%</li>
+          <li>Implemented automated data validation checks achieving 99.5% collection accuracy</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SKILLS ── -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label">Technologies</div>
+    <div class="section-title">Skills & Stack</div>
+    <p class="section-subtitle">The tools I use to design, build, and ship production AI systems.</p>
+
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-title">Languages</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">Java</span>
+          <span class="skill-pill">JavaScript</span>
+          <span class="skill-pill">R</span>
+          <span class="skill-pill">SQL</span>
+          <span class="skill-pill">React</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">AI / ML Ops</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Azure OpenAI</span>
+          <span class="skill-pill">SageMaker</span>
+          <span class="skill-pill">Databricks</span>
+          <span class="skill-pill">HuggingFace</span>
+          <span class="skill-pill">DeepEval</span>
+          <span class="skill-pill">DataRobot</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">LLM & Agents</div>
+        <div class="skill-pills">
+          <span class="skill-pill">LangGraph</span>
+          <span class="skill-pill">LangChain</span>
+          <span class="skill-pill">LangSmith</span>
+          <span class="skill-pill">vLLM</span>
+          <span class="skill-pill">QLoRA</span>
+          <span class="skill-pill">RAG</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Frameworks</div>
+        <div class="skill-pills">
+          <span class="skill-pill">FastAPI</span>
+          <span class="skill-pill">Flask</span>
+          <span class="skill-pill">Pydantic</span>
+          <span class="skill-pill">Pytest</span>
+          <span class="skill-pill">Pandas</span>
+          <span class="skill-pill">NumPy</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Vector / Data</div>
+        <div class="skill-pills">
+          <span class="skill-pill">pgvector</span>
+          <span class="skill-pill">Pinecone</span>
+          <span class="skill-pill">Qdrant</span>
+          <span class="skill-pill">FAISS</span>
+          <span class="skill-pill">Milvus</span>
+          <span class="skill-pill">Snowflake</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">DevOps & Cloud</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Docker</span>
+          <span class="skill-pill">Kubernetes</span>
+          <span class="skill-pill">Terraform</span>
+          <span class="skill-pill">Airflow</span>
+          <span class="skill-pill">MLFlow</span>
+          <span class="skill-pill">AWS</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Monitoring</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Prometheus</span>
+          <span class="skill-pill">Grafana</span>
+          <span class="skill-pill">LLM Harness</span>
+          <span class="skill-pill">LangSmith</span>
+          <span class="skill-pill">Sisense</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Databases</div>
+        <div class="skill-pills">
+          <span class="skill-pill">PostgreSQL</span>
+          <span class="skill-pill">DynamoDB</span>
+          <span class="skill-pill">Cosmos DB</span>
+          <span class="skill-pill">AWS RDS</span>
+          <span class="skill-pill">Spark</span>
+          <span class="skill-pill">Dask</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EDUCATION ── -->
+<section id="education">
+  <div class="container">
+    <div class="section-label">Academic</div>
+    <div class="section-title">Education & Certifications</div>
+    <p class="section-subtitle" style="margin-bottom: 32px;">Rigorous academic foundation paired with industry certifications.</p>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-icon">🎓</div>
+        <div class="edu-degree">Ph.D. in Artificial Intelligence</div>
+        <div class="edu-school">University of Cumberlands</div>
+        <div class="edu-date">Expected December 2027</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-icon">📘</div>
+        <div class="edu-degree">M.Sc. Computer Science</div>
+        <div class="edu-school">North American University</div>
+        <div class="edu-date">September 2022</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-icon">☁️</div>
+        <div class="edu-degree">AI Engineer Associate</div>
+        <div class="edu-school">Microsoft Azure Cloud</div>
+        <div class="edu-date">September 2023</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-icon">🔷</div>
+        <div class="edu-degree">AI Fundamentals</div>
+        <div class="edu-school">Microsoft Azure Cloud</div>
+        <div class="edu-date">September 2023</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WRITING ── -->
+<section id="writing">
+  <div class="container">
+    <div class="section-label">Latest Writing</div>
+    <div class="section-title">Insights & Technical Deep-Dives</div>
+    <p class="section-subtitle">Sharing what I learn building AI systems at scale.</p>
+    <div class="writing-grid">
+      <div class="writing-card">
+        <div class="writing-meta">AI Infrastructure · GEICO Tech</div>
+        <h3>QLoRA Fine-Tuning for Enterprise Tool-Calling: Getting 100% Precision on a 400-Example Corpus</h3>
+        <p>How we chose QLoRA over full fine-tuning, structured our training data to remove persona leakage, and achieved GPT-4.1 parity in 13.5 minutes on an A100.</p>
+      </div>
+      <div class="writing-card">
+        <div class="writing-meta">Cost Optimization · Azure OpenAI</div>
+        <h3>Building a Real-Time PTU Capacity Intelligence Layer Across 19 Enterprise Deployments</h3>
+        <p>The architecture behind sub-200ms capacity signals that route workloads dynamically and prevent wasted spend on multi-million-dollar AI infrastructure.</p>
+      </div>
+      <div class="writing-card">
+        <div class="writing-meta">RAG · Vector Search</div>
+        <h3>Prompts as Code: The LLM Wiki Pattern for Safe, Auditable Context Promotion</h3>
+        <p>How a Git-native monorepo with environment-isolated promotion (dev→staging→prod) gives teams auditability over AI context changes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<div class="cta-section" id="contact">
+  <h2>Let's build useful AI</h2>
+  <p>Open to senior AI/ML engineering roles, consulting, and collaboration on enterprise AI systems.</p>
+  <a class="btn-primary" href="mailto:kclamu26@gmail.com">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+    Get in touch
+  </a>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>© 2026 Claire Kim · AI/ML Engineering Leader</p>
+  <div class="footer-links">
+    <a href="mailto:kclamu26@gmail.com">Email</a>
+    <a href="https://www.linkedin.com/in/" target="_blank">LinkedIn</a>
+    <a href="https://github.com/" target="_blank">GitHub</a>
+    <a href="https://rpubs.com/" target="_blank">RPubs</a>
+    <a href="https://twitter.com/ClaireTechBot1" target="_blank">Twitter</a>
+  </div>
+</footer>
+
+</body>
+</html>
