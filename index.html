@@ -4,6 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Claire Kim — AI/ML Engineering Leader</title>
+  <meta name="description" content="Lead AI Engineer building production GenAI platforms, RAG systems, and multi-agent architectures. 10+ AI products shipped across enterprise." />
+  <meta property="og:title" content="Claire Kim — AI/ML Engineering Leader" />
+  <meta property="og:description" content="Building secure, reliable, and cost-efficient GenAI platforms that deliver real business impact." />
+  <meta property="og:image" content="https://claire56.github.io/Portfolio.github.io/profile.jpeg" />
+  <meta property="og:url" content="https://claire56.github.io/Portfolio.github.io/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect fill='%232563EB' width='32' height='32' rx='8'/><text x='16' y='22' text-anchor='middle' fill='white' font-size='16' font-family='sans-serif' font-weight='700'>C</text></svg>" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -19,33 +28,54 @@
     }
     html { scroll-behavior: smooth; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', Helvetica, sans-serif;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       background: var(--white); color: var(--slate);
       font-size: 15px; line-height: 1.6;
     }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 
     /* NAV */
     nav {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(255,255,255,0.96); backdrop-filter: blur(10px);
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 48px; height: 60px;
+      padding: 0 48px; height: 64px;
+      transition: box-shadow .2s;
     }
-    .nav-logo { font-weight: 700; font-size: 0.95rem; color: var(--navy); text-decoration: none; }
+    nav.scrolled { box-shadow: 0 4px 24px rgba(15,23,42,0.06); }
+    .nav-logo { font-weight: 800; font-size: 0.95rem; color: var(--navy); text-decoration: none; letter-spacing: -0.3px; }
     .nav-links { display: flex; gap: 28px; list-style: none; }
     .nav-links a { font-size: 0.85rem; font-weight: 500; color: var(--muted); text-decoration: none; transition: color .15s; }
-    .nav-links a:hover { color: var(--blue); }
+    .nav-links a:hover, .nav-links a.active { color: var(--blue); }
+    .nav-toggle {
+      display: none; background: none; border: none; cursor: pointer;
+      padding: 8px; color: var(--navy);
+    }
 
     /* HERO */
-    .hero-wrap { display: grid; grid-template-columns: 1fr 420px; min-height: 480px; overflow: hidden; }
-    .hero-left { padding: 72px 48px 64px; display: flex; flex-direction: column; justify-content: center; }
-    .hero-left h1 {
-      font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 800;
-      color: var(--navy); line-height: 1.12; letter-spacing: -1.5px; margin-bottom: 18px;
+    .hero-wrap {
+      display: grid; grid-template-columns: 1fr 420px; min-height: 520px; overflow: hidden;
+      background: linear-gradient(135deg, #fff 55%, #EFF6FF 100%);
     }
-    .hero-left p { font-size: 0.95rem; color: var(--muted); max-width: 460px; line-height: 1.75; margin-bottom: 32px; }
-    .hero-btns { display: flex; gap: 12px; }
+    .hero-left { padding: 80px 48px 72px; display: flex; flex-direction: column; justify-content: center; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.75rem; font-weight: 600; color: var(--blue);
+      background: var(--blue-bg); border: 1px solid var(--blue-mid);
+      padding: 5px 12px; border-radius: 100px; margin-bottom: 20px; width: fit-content;
+    }
+    .hero-eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); }
+    .hero-left h1 {
+      font-size: clamp(2.2rem, 4vw, 3.4rem); font-weight: 800;
+      color: var(--navy); line-height: 1.1; letter-spacing: -1.8px; margin-bottom: 20px;
+    }
+    .hero-left h1 .accent {
+      background: linear-gradient(135deg, var(--blue) 0%, #1D4ED8 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-left p { font-size: 1rem; color: var(--muted); max-width: 480px; line-height: 1.75; margin-bottom: 32px; }
+    .hero-btns { display: flex; flex-wrap: wrap; gap: 12px; }
     .btn {
       display: inline-flex; align-items: center; gap: 7px;
       padding: 10px 20px; border-radius: 8px; font-size: 0.85rem; font-weight: 600;
@@ -56,25 +86,41 @@
     .btn-outline { background: var(--white); color: var(--navy); border: 1.5px solid var(--border); }
     .btn-outline:hover { border-color: var(--blue); color: var(--blue); }
     .hero-right {
-      background: #DBEAFE; position: relative;
-      display: flex; align-items: flex-end; justify-content: center;
-      overflow: hidden; padding: 32px 32px 0;
+      background: linear-gradient(160deg, #DBEAFE 0%, #BFDBFE 50%, #93C5FD 100%);
+      position: relative; display: flex; align-items: flex-end; justify-content: center;
+      overflow: hidden; padding: 40px 40px 0;
+    }
+    .hero-right::before {
+      content: ''; position: absolute; width: 280px; height: 280px; border-radius: 50%;
+      background: rgba(255,255,255,0.25); top: -60px; right: -40px;
     }
     .hero-dots {
-      position: absolute; top: 20px; right: 20px; width: 140px; height: 140px;
-      background-image: radial-gradient(circle, #93C5FD 2px, transparent 2px);
-      background-size: 20px 20px; z-index: 0;
+      position: absolute; top: 24px; right: 24px; width: 120px; height: 120px;
+      background-image: radial-gradient(circle, rgba(37,99,235,0.25) 2px, transparent 2px);
+      background-size: 18px 18px; z-index: 0;
+    }
+    .hero-photo-wrap {
+      position: relative; z-index: 1; padding: 6px 6px 0;
+      background: rgba(255,255,255,0.5); border-radius: 20px 20px 0 0;
+      backdrop-filter: blur(4px);
     }
     .hero-photo {
-      position: relative; z-index: 1; width: 320px; height: 420px;
-      object-fit: cover; object-position: center top; display: block;
-      border-radius: 14px 14px 0 0; box-shadow: 0 -8px 40px rgba(37,99,235,0.15);
+      width: 300px; height: 400px; object-fit: cover; object-position: center 15%;
+      display: block; border-radius: 16px 16px 0 0;
+      box-shadow: 0 20px 50px rgba(37,99,235,0.2);
     }
 
     /* STATS */
-    .stats { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); display: grid; grid-template-columns: repeat(4,1fr); }
-    .stat { display: flex; align-items: center; gap: 12px; padding: 22px 32px; border-right: 1px solid var(--border); }
-    .stat:last-child { border-right: none; }
+    .stats {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 16px;
+      padding: 24px 48px; background: var(--bg); border-bottom: 1px solid var(--border);
+    }
+    .stat {
+      display: flex; align-items: center; gap: 14px; padding: 20px 22px;
+      background: var(--white); border: 1px solid var(--border); border-radius: 12px;
+      transition: transform .15s, box-shadow .15s;
+    }
+    .stat:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(15,23,42,0.06); }
     .stat-icon { width: 38px; height: 38px; border-radius: 8px; background: var(--blue-bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .stat-num { font-size: 1.25rem; font-weight: 800; color: var(--navy); line-height: 1.1; }
     .stat-desc { font-size: 0.75rem; color: var(--muted); }
@@ -82,19 +128,32 @@
     /* SECTIONS */
     .section { padding: 56px 48px; }
     .section-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 28px; }
-    .section-title { font-size: 1.25rem; font-weight: 700; color: var(--navy); }
-    .section-link { font-size: 0.82rem; color: var(--muted); text-decoration: none; font-weight: 500; }
+    .section-title { font-size: 1.35rem; font-weight: 800; color: var(--navy); letter-spacing: -0.4px; }
+    .section-subtitle { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
+    .section-link { font-size: 0.82rem; color: var(--muted); text-decoration: none; font-weight: 600; }
     .section-link:hover { color: var(--blue); }
 
     /* PROJECTS */
+    .featured-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-bottom: 28px; }
     .projects-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
     .proj-card {
       background: var(--white); border: 1px solid var(--border);
-      border-radius: 10px; padding: 20px;
-      transition: box-shadow .15s, transform .15s;
+      border-radius: 12px; padding: 22px; display: flex; flex-direction: column;
+      text-decoration: none; color: inherit;
+      transition: box-shadow .2s, transform .2s, border-color .2s;
     }
-    .proj-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); transform: translateY(-2px); }
-    .proj-card-top { display: flex; gap: 14px; margin-bottom: 12px; }
+    .proj-card:hover { box-shadow: 0 12px 32px rgba(37,99,235,0.1); transform: translateY(-3px); border-color: var(--blue-mid); }
+    .proj-card.featured { padding: 26px; background: linear-gradient(180deg, #fff 0%, #F8FAFF 100%); }
+    .proj-metric {
+      display: inline-block; font-size: 0.68rem; font-weight: 700; color: var(--blue);
+      background: var(--blue-bg); padding: 3px 10px; border-radius: 100px; margin-bottom: 12px;
+    }
+    .proj-card-top { display: flex; gap: 14px; margin-bottom: 12px; flex: 1; }
+    .proj-link {
+      display: inline-flex; align-items: center; gap: 5px; margin-top: 16px;
+      font-size: 0.75rem; font-weight: 700; color: var(--blue);
+    }
+    .proj-card:hover .proj-link { gap: 8px; }
     .proj-icon {
       width: 40px; height: 40px; border-radius: 8px; background: var(--blue-bg);
       display: flex; align-items: center; justify-content: center; flex-shrink: 0;
@@ -171,7 +230,8 @@
     /* WRITING */
     .writing-col { padding: 40px 48px; border-right: 1px solid var(--border); }
     .writing-list { display: flex; flex-direction: column; gap: 0; margin-top: 20px; }
-    .writing-item { display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid var(--border); }
+    .writing-item { display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid var(--border); text-decoration: none; color: inherit; transition: opacity .15s; }
+    a.writing-item:hover { opacity: 0.85; }
     .writing-item:first-child { padding-top: 0; }
     .writing-item:last-child { border-bottom: none; }
     a.writing-link { text-decoration: none; color: inherit; transition: opacity .15s; }
@@ -213,30 +273,42 @@
 
     /* RESPONSIVE */
     @media (max-width: 960px) {
-      .hero-wrap { grid-template-columns: 1fr; }
-      .hero-right { height: 340px; padding: 24px 24px 0; }
-      .hero-photo { width: 240px; height: 300px; }
-      .stats { grid-template-columns: repeat(2,1fr); }
-      .stat:nth-child(2) { border-right: none; }
-      .projects-grid { grid-template-columns: 1fr; }
+      .nav-toggle { display: block; }
+      .nav-links {
+        display: none; position: absolute; top: 64px; left: 0; right: 0;
+        flex-direction: column; gap: 0; background: var(--white);
+        border-bottom: 1px solid var(--border); padding: 12px 24px 20px;
+        box-shadow: 0 12px 32px rgba(15,23,42,0.08);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li a { display: block; padding: 10px 0; }
+      .hero-wrap { grid-template-columns: 1fr; min-height: auto; }
+      .hero-right { height: 360px; padding: 24px 24px 0; order: -1; }
+      .hero-photo { width: 220px; height: 280px; }
+      .stats { grid-template-columns: repeat(2,1fr); padding: 20px 24px; }
+      .featured-grid, .projects-grid { grid-template-columns: 1fr; }
       .exp-timeline { grid-template-columns: 1fr; }
       .bottom-grid { grid-template-columns: 1fr; }
       .skills-col, .writing-col { border-right: none; border-bottom: 1px solid var(--border); }
-      nav { padding: 0 24px; }
+      nav { padding: 0 24px; position: relative; }
       .section { padding: 40px 24px; }
-      .hero-left { padding: 48px 24px; }
+      .hero-left { padding: 40px 24px 48px; }
     }
   </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav>
-  <a class="nav-logo" href="#">Claire Kim</a>
-  <ul class="nav-links">
+<nav id="nav">
+  <a class="nav-logo" href="#about">Claire Kim</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <ul class="nav-links" id="navLinks">
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
     <li><a href="#writing">Writing</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -245,22 +317,25 @@
 <!-- HERO -->
 <div class="hero-wrap" id="about">
   <div class="hero-left">
-    <h1>Building production<br>AI systems that scale</h1>
+    <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span> AI Engineering Leader</div>
+    <h1>Building production<br>AI systems that <span class="accent">scale</span></h1>
     <p>Lead AI Engineer focused on building secure, reliable, and cost-efficient GenAI platforms and agentic systems. I design and ship enterprise AI products leveraging LLMs, RAG, AI gateways, and multi-agent architectures that deliver real business impact.</p>
     <div class="hero-btns">
       <a class="btn btn-blue" href="#projects">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
         View Projects
       </a>
-      <a class="btn btn-outline" href="Claire_Resume_1k.docx.pdf" download>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download Resume
+      <a class="btn btn-outline" href="https://www.linkedin.com/in/claire-muw/" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
       </a>
     </div>
   </div>
   <div class="hero-right">
     <div class="hero-dots"></div>
-    <img class="hero-photo" src="profile.jpeg" alt="Claire Kim" />
+    <div class="hero-photo-wrap">
+      <img class="hero-photo" src="profile.jpeg" alt="Claire Kim — AI Engineering Leader" width="300" height="400" />
+    </div>
   </div>
 </div>
 
@@ -295,12 +370,66 @@
 <!-- PROJECTS -->
 <div class="section" id="projects">
   <div class="section-header">
-    <div class="section-title">Featured Projects</div>
-    <a class="section-link" href="#">View all projects →</a>
+    <div>
+      <div class="section-title">Featured Projects</div>
+      <div class="section-subtitle">Production systems with measurable impact</div>
+    </div>
+    <a class="section-link" href="#all-projects">View all projects →</a>
+  </div>
+
+  <div class="featured-grid">
+    <a class="proj-card featured" href="mailto:kclamu26@gmail.com?subject=Project%20inquiry%3A%20SLM%20Fine-Tuning%20Pipeline">
+      <span class="proj-metric">100% tool precision</span>
+      <div class="proj-card-top">
+        <div class="proj-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+        </div>
+        <div>
+          <h3>SLM Fine-Tuning Pipeline</h3>
+          <p>Enterprise QLoRA fine-tuning on Llama 3.2 for customer assistant tool-calling. Matches GPT-4.1 on 286 held-out examples; trained in 13.5 min on A100.</p>
+        </div>
+      </div>
+      <div class="proj-tags"><span class="proj-tag">QLoRA</span><span class="proj-tag">Llama 3.2</span><span class="proj-tag">Azure AML</span><span class="proj-tag">vLLM</span></div>
+      <span class="proj-link">Request details →</span>
+    </a>
+
+    <a class="proj-card featured" href="mailto:kclamu26@gmail.com?subject=Project%20inquiry%3A%20PTU%20Capacity%20API">
+      <span class="proj-metric">Sub-200ms · 19 instances</span>
+      <div class="proj-card-top">
+        <div class="proj-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+        </div>
+        <div>
+          <h3>PTU Capacity API</h3>
+          <p>Real-time Azure OpenAI capacity intelligence enabling dynamic load routing — turning opaque PTU spend into programmatic decisions.</p>
+        </div>
+      </div>
+      <div class="proj-tags"><span class="proj-tag">FastAPI</span><span class="proj-tag">Azure Monitor</span><span class="proj-tag">AKS</span><span class="proj-tag">Prometheus</span></div>
+      <span class="proj-link">Request details →</span>
+    </a>
+
+    <a class="proj-card featured" href="mailto:kclamu26@gmail.com?subject=Project%20inquiry%3A%20Context%20Fabric">
+      <span class="proj-metric">Sub-150ms retrieval</span>
+      <div class="proj-card-top">
+        <div class="proj-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        </div>
+        <div>
+          <h3>Context Fabric</h3>
+          <p>Context store for AI Agent Harness using pgvector + HNSW indexing. LLM Wiki prompts-as-code with CI/CD re-embedding pipeline.</p>
+        </div>
+      </div>
+      <div class="proj-tags"><span class="proj-tag">pgvector</span><span class="proj-tag">HNSW</span><span class="proj-tag">Python</span><span class="proj-tag">CI/CD</span></div>
+      <span class="proj-link">Request details →</span>
+    </a>
+  </div>
+
+  <div class="section-header" id="all-projects" style="margin-top:8px;">
+    <div class="section-title" style="font-size:1.05rem;">More Projects</div>
   </div>
   <div class="projects-grid">
 
-    <div class="proj-card">
+    <a class="proj-card" href="mailto:kclamu26@gmail.com?subject=Project%20inquiry%3A%20Enterprise%20AI%20Gateway">
       <div class="proj-card-top">
         <div class="proj-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
@@ -311,9 +440,10 @@
         </div>
       </div>
       <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">FastAPI</span><span class="proj-tag">Kubernetes</span><span class="proj-tag">Azure</span></div>
-    </div>
+      <span class="proj-link">Request details →</span>
+    </a>
 
-    <div class="proj-card">
+    <a class="proj-card" href="mailto:kclamu26@gmail.com?subject=Project%20inquiry%3A%20Multi-Agent%20Assistant">
       <div class="proj-card-top">
         <div class="proj-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v4M12 11l-5 6M12 11l5 6"/></svg>
@@ -324,9 +454,10 @@
         </div>
       </div>
       <div class="proj-tags"><span class="proj-tag">LangGraph</span><span class="proj-tag">Redis</span><span class="proj-tag">OpenAI</span><span class="proj-tag">LangSmith</span></div>
-    </div>
+      <span class="proj-link">Request details →</span>
+    </a>
 
-    <div class="proj-card">
+    <a class="proj-card" href="mailto:kclamu26@gmail.com?subject=Project%20inquiry%3A%20RAG%20Knowledge%20Platform">
       <div class="proj-card-top">
         <div class="proj-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v4c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 9v4c0 1.66 4 3 9 3s9-1.34 9-3V9"/><path d="M3 13v4c0 1.66 4 3 9 3s9-1.34 9-3v-4"/></svg>
@@ -337,48 +468,10 @@
         </div>
       </div>
       <div class="proj-tags"><span class="proj-tag">Pinecone</span><span class="proj-tag">Neo4j</span><span class="proj-tag">FastAPI</span><span class="proj-tag">AWS</span></div>
-    </div>
+      <span class="proj-link">Request details →</span>
+    </a>
 
-    <div class="proj-card">
-      <div class="proj-card-top">
-        <div class="proj-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
-        </div>
-        <div>
-          <h3>SLM Fine-Tuning Pipeline</h3>
-          <p>Enterprise QLoRA fine-tuning on Llama 3.2 for customer assistant tool-calling. 100% tool precision matching GPT-4.1 on 286 held-out examples; trained in 13.5 min on A100.</p>
-        </div>
-      </div>
-      <div class="proj-tags"><span class="proj-tag">QLoRA</span><span class="proj-tag">Llama 3.2</span><span class="proj-tag">Azure AML</span><span class="proj-tag">vLLM</span><span class="proj-tag">AKS</span></div>
-    </div>
-
-    <div class="proj-card">
-      <div class="proj-card-top">
-        <div class="proj-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-        </div>
-        <div>
-          <h3>PTU Capacity API</h3>
-          <p>Real-time Azure OpenAI capacity intelligence across 19 enterprise instances. Sub-200ms responses enable dynamic load routing, turning opaque PTU spend into programmatic decisions.</p>
-        </div>
-      </div>
-      <div class="proj-tags"><span class="proj-tag">FastAPI</span><span class="proj-tag">Azure Monitor</span><span class="proj-tag">AKS</span><span class="proj-tag">APISIX</span><span class="proj-tag">Prometheus</span></div>
-    </div>
-
-    <div class="proj-card">
-      <div class="proj-card-top">
-        <div class="proj-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-        </div>
-        <div>
-          <h3>Context Fabric</h3>
-          <p>Open-source context store for AI Agent Harness using pgvector + HNSW indexing for sub-150ms retrieval. Includes LLM Wiki prompts-as-code pattern with CI/CD re-embedding pipeline.</p>
-        </div>
-      </div>
-      <div class="proj-tags"><span class="proj-tag">pgvector</span><span class="proj-tag">HNSW</span><span class="proj-tag">Python</span><span class="proj-tag">CI/CD</span><span class="proj-tag">Open Source</span></div>
-    </div>
-
-    <div class="proj-card">
+    <a class="proj-card" href="mailto:kclamu26@gmail.com?subject=Project%20inquiry%3A%20ML%20Data%20Pipelines">
       <div class="proj-card-top">
         <div class="proj-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/><rect x="16" y="15" width="6" height="6" rx="1"/><path d="M8 6h2a1 1 0 011 1v2M15 12h2a1 1 0 011 1v2"/></svg>
@@ -389,33 +482,36 @@
         </div>
       </div>
       <div class="proj-tags"><span class="proj-tag">Databricks</span><span class="proj-tag">Spark</span><span class="proj-tag">Dask</span><span class="proj-tag">Azure ML</span><span class="proj-tag">ADLS</span></div>
-    </div>
+      <span class="proj-link">Request details →</span>
+    </a>
 
-    <div class="proj-card">
+    <a class="proj-card" href="https://www.smileagainfamilies.org/" target="_blank" rel="noopener">
       <div class="proj-card-top">
         <div class="proj-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
         </div>
         <div>
           <h3>Smile Again NGO Assistant</h3>
-          <p>AI assistant for Smile Again Families trained on real website content. Instantly answers donor, volunteer, and grant writer questions about programs, impact, sponsorship, and grant opportunities — live in production.</p>
+          <p>AI assistant for Smile Again Families trained on real website content. Answers donor, volunteer, and grant writer questions — live in production.</p>
         </div>
       </div>
       <div class="proj-tags"><span class="proj-tag">RAG</span><span class="proj-tag">LangChain</span><span class="proj-tag">Nonprofit</span><span class="proj-tag">Jamiiz AI</span></div>
-    </div>
+      <span class="proj-link">View NGO site →</span>
+    </a>
 
-    <div class="proj-card">
+    <a class="proj-card" href="mailto:kclamu26@gmail.com?subject=Project%20inquiry%3A%20Project%20Wintermute">
       <div class="proj-card-top">
         <div class="proj-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="16" r="0.5" fill="#2563EB"/></svg>
         </div>
         <div>
           <h3>Project Wintermute</h3>
-          <p>ML-driven security anomaly detection across enterprise logs, network, and telemetry. Gradient boosting outperformed clustering and supervised classifiers; tuned to minimize false positives.</p>
+          <p>ML-driven security anomaly detection across enterprise logs, network, and telemetry. Gradient boosting outperformed clustering; tuned to minimize false positives.</p>
         </div>
       </div>
-      <div class="proj-tags"><span class="proj-tag">XGBoost</span><span class="proj-tag">Sklearn</span><span class="proj-tag">Python</span><span class="proj-tag">Security</span><span class="proj-tag">Telemetry</span></div>
-    </div>
+      <div class="proj-tags"><span class="proj-tag">XGBoost</span><span class="proj-tag">Sklearn</span><span class="proj-tag">Python</span><span class="proj-tag">Security</span></div>
+      <span class="proj-link">Request details →</span>
+    </a>
 
   </div>
 </div>
@@ -594,39 +690,39 @@
   <div class="writing-col" id="writing">
     <div class="section-header" style="margin-bottom:0;">
       <div class="section-title">Latest Writing</div>
-      <a class="section-link" href="#">View all articles →</a>
+      <a class="section-link" href="https://www.linkedin.com/in/claire-muw/recent-activity/articles/" target="_blank" rel="noopener">View all articles →</a>
     </div>
     <div class="writing-list">
-      <div class="writing-item">
+      <a class="writing-item writing-link" href="mailto:kclamu26@gmail.com?subject=Article%20request%3A%20Cutting%20GenAI%20Costs">
         <div class="writing-thumb" style="background:#DBEAFE;">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8" stroke-linecap="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
         </div>
         <div>
-          <a href="#" style="text-decoration:none;"><h4 style="color:var(--navy);">Cutting GenAI Costs: Practical Strategies That Work</h4></a>
+          <h4>Cutting GenAI Costs: Practical Strategies That Work</h4>
           <p class="writing-meta">How we achieved 45% inference cost reduction without sacrificing quality.</p>
           <div class="writing-meta">Coming soon · 6 min read</div>
         </div>
-      </div>
-      <div class="writing-item">
+      </a>
+      <a class="writing-item writing-link" href="https://www.linkedin.com/pulse/when-ai-agents-go-rogue-secure-playbook-building-trustworthy-mk-7t8xc" target="_blank" rel="noopener">
         <div class="writing-thumb" style="background:#EDE9FE;">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="1.8" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="16" r="0.5" fill="#7C3AED"/></svg>
         </div>
         <div>
           <h4>When AI Agents Go Rogue: A Secure Playbook for Building Trustworthy AI</h4>
           <p class="writing-meta">How to build agent systems with guardrails, escalation paths, and auditability from day one.</p>
-          <div class="writing-meta" style="margin-top:4px;">LinkedIn · <a href="https://www.linkedin.com/pulse/when-ai-agents-go-rogue-secure-playbook-building-trustworthy-mk-7t8xc" target="_blank" style="color:var(--blue);text-decoration:none;font-weight:600;">Read article →</a></div>
+          <div class="writing-meta" style="margin-top:4px;">LinkedIn · Read article →</div>
         </div>
-      </div>
-      <div class="writing-item">
+      </a>
+      <a class="writing-item writing-link" href="https://www.linkedin.com/pulse/beyond-vectors-why-knowledge-graphs-rag-secret-weapon-claire-mk-mro7c" target="_blank" rel="noopener">
         <div class="writing-thumb" style="background:#FFF7ED;">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#EA580C" stroke-width="1.8" stroke-linecap="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
         </div>
         <div>
           <h4>Beyond Vectors: Why Knowledge Graphs Are RAG's Secret Weapon</h4>
           <p class="writing-meta">How combining knowledge graphs with RAG improves retrieval quality, relevance, and trust.</p>
-          <div class="writing-meta" style="margin-top:4px;">LinkedIn · <a href="https://www.linkedin.com/pulse/beyond-vectors-why-knowledge-graphs-rag-secret-weapon-claire-mk-mro7c" target="_blank" style="color:var(--blue);text-decoration:none;font-weight:600;">Read article →</a></div>
+          <div class="writing-meta" style="margin-top:4px;">LinkedIn · Read article →</div>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 
@@ -661,11 +757,30 @@
   <p>© 2026 Claire Kim. All rights reserved. · Built with curiosity. Driven by impact.</p>
   <div class="foot-links">
     <a href="mailto:kclamu26@gmail.com">Email</a>
-    <a href="#">LinkedIn</a>
-    <a href="#">GitHub</a>
-    <a href="#">RPubs</a>
+    <a href="https://www.linkedin.com/in/claire-muw/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://github.com/Claire56" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://rpubs.com/Claire56" target="_blank" rel="noopener">RPubs</a>
   </div>
 </footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 8);
+  });
+
+  navToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open);
+  });
+
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+</script>
 
 </body>
 </html>
